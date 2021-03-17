@@ -1,21 +1,25 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { createAppContainer } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation-stack';
+import HomeScreen from './src/screens/HomeScreen';
+import ComponentsScreen from './src/screens/ComponentsScreen';
+import ListScreen from './src/screens/ListScreen';
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+const navigator = createStackNavigator(
+  //library called React Navigation
+  // navigation: showing different content to the user
+  {
+    // add any item you want in the navigation to this object
+    Home: HomeScreen,
+    Components: ComponentsScreen,
+    List: ListScreen
   },
-});
+  {
+    //starting page when app loads
+    initialRouteName: 'List',
+    defaultNavigationOptions: {
+      title: 'I love poop',
+    },
+  }
+);
+
+export default createAppContainer(navigator);
